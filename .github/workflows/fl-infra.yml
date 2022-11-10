@@ -1,0 +1,36 @@
+name: FL provision resources
+
+on:
+  workflow_dispatch:
+    inputs:
+      resource_group:
+        description: 'Resource group name'
+        required: true
+        default: 'fedlearn' 
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@main
+    - name: Install az ml extension
+      run: az extension add -n ml -y
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: Provision resources
+      run: |
+        az configure --defaults group="${{ github.event.inputs.resource_group }}"
+
+        az vm create -n fedserver --image microsoft-dsvm:ubuntu-1804:1804-gen2:latest --authentication-type password --public-ip-address-dns-name ${{ github.event.inputs.resource_group }} \
+        --admin-password ${{ secrets.VM_PASSWORD }}
+
+        az vm open-port -n fedserver --port 8002-8003 --priority 100
+
+        az ml workspace create -n Asia-Hospital --location eastasia
+        az ml workspace create -n Europe-Hospital --location westeurope
+        az ml workspace create -n US-Hospital --location eastus
+        az ml workspace create -n central-workspace --location eastus
