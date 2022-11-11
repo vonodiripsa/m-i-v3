@@ -4,7 +4,7 @@ description: Training a pneumonia model based on chest x-ray images
 
 participants:
   # change example.com to the FQDN of the server
-  - name: <servername>.westeurope.cloudapp.azure.com
+  - name: flserver.westus2.cloudapp.azure.com
     type: server
     org: nvidia
     fed_learn_port: 8002
