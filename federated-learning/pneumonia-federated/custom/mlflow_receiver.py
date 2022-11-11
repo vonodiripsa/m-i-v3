@@ -73,8 +73,8 @@ class MLFlowAnalyticsReceiver(AnalyticsReceiver):
         self.root_log_dir = root_log_dir
 
         #Enter details of your AzureML workspace
-        subscription_id = '8a0a9110-e983-4f1c-bb7b-20153997282b'
-        resource_group = 'federated-learning'
+        subscription_id = 'b7d41fc8-d35d-41db-92ed-1f7f1d32d4d9'
+        resource_group = 'fedlearning-rg'
         workspace = 'central-workspace'
 
         #connect to the workspace
