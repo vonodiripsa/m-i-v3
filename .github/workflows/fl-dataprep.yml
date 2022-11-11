@@ -6,7 +6,7 @@ on:
       resource_group:
         description: 'Resource group name'
         required: true
-        default: 'fedlearn' 
+        default: 'fedlearning-rg' 
         type: string
 
 jobs:
