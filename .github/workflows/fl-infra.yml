@@ -6,7 +6,7 @@ on:
       resource_group:
         description: 'Resource group name'
         required: true
-        default: 'fedlearn' 
+        default: 'fedlearning-rg' 
         type: string
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
 
         az vm open-port -n fedserver --port 8002-8003 --priority 100
 
-        az ml workspace create -n Asia-Hospital --location eastasia
-        az ml workspace create -n Europe-Hospital --location westeurope
-        az ml workspace create -n US-Hospital --location eastus
+        az ml workspace create -n Asia-Client --location eastasia
+        az ml workspace create -n Europe-Client --location westeurope
+        az ml workspace create -n US-Client --location eastus
         az ml workspace create -n central-workspace --location eastus
